@@ -1,0 +1,27 @@
+server:
+  port: 8081
+# error:
+#  whitelabel:
+#    enabled: false
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/bmanager
+    password:
+    username: root
+
+  jpa:
+    show.sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+ # mvc:
+ #  throw-exception-if-no-handler-found: true
+ #resources:
+ #  add-mappings: false
+
+jwt:
+  secret: 'ewhifvbbefvetfvgbuejsfvpeoi9fvu8hefbijlkmrowetu8jewo[9fi0wu8dfjskoir9u8e'
+
