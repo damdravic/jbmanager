@@ -226,7 +226,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User updateUser(String currentUsername, String newFirstName, String newLastName, String newUsername, String newEmail, String role, boolean isNotLocked, boolean isActive, MultipartFile profileImage) throws UsernameExistException, EmailExistException, IOException {
+    public User updateUser(String currentUsername, String newFirstName, String newLastName, String newUsername, String newEmail, String role, boolean isActive, boolean isNotLocked, MultipartFile profileImage) throws UsernameExistException, EmailExistException, IOException {
         User currentUser = validateNewUsernameAndEmail(currentUsername,StringUtils.EMPTY,StringUtils.EMPTY );
         currentUser.setFirstName(newFirstName);
         currentUser.setLastName(newLastName);
@@ -243,8 +243,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void deleteUser(Long id) {
-          userRepository.deleteById(id);
+    public void deleteUser(String username) {
+          User user = userRepository.findUserByUsername(username);
+
+        userRepository.deleteById(user.getId());
     }
 
     @Override

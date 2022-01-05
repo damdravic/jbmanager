@@ -75,7 +75,13 @@ public class UserResource extends ExceptionHandling {
                                            @RequestParam(value = "profileImage",required = false) MultipartFile profileImage) throws UsernameExistException,
                                                                                                                          EmailExistException, IOException {
 
-        System.out.printf("/add before user.service");
+
+        System.out.printf("1" + firstName);
+        System.out.printf("2" + lastName);
+        System.out.printf("3" + username);
+        System.out.printf("4" + email);
+        System.out.printf("5" + role);
+        System.out.printf("6 " + isActive);
         User user  = userService.addNewUser(firstName, lastName, username, email, role, Boolean.parseBoolean(isActive), Boolean.parseBoolean(isNotLocked),
                 profileImage);
         System.out.printf("/add after user.service");
@@ -90,12 +96,15 @@ public class UserResource extends ExceptionHandling {
                                            @RequestParam("username") String username,
                                            @RequestParam("email") String email,
                                            @RequestParam("role") String role,
-                                           @RequestParam("isActive") String isActive,
-                                           @RequestParam("isNotLocked") String isNotLocked,
+                                           @RequestParam("isActive") String TisActive,
+                                           @RequestParam("isNotLocked") String TisNotLocked,
                                            @RequestParam(value = "profileImage",required = false) MultipartFile profileImage) throws UsernameExistException,
             EmailExistException, IOException {
-
-        User updatedUser  = userService.updateUser(currentUser,firstName, lastName, username, email, role, Boolean.parseBoolean(isActive), Boolean.parseBoolean(isNotLocked),
+        boolean isActive = Boolean.parseBoolean(TisActive);
+        boolean isNotLocked = Boolean.parseBoolean(TisNotLocked);
+        System.out.printf("active " + isActive);
+        System.out.printf("locked " + isNotLocked);
+        User updatedUser  = userService.updateUser(currentUser,firstName, lastName, username, email, role,isActive, isNotLocked,
                 profileImage);
         return new ResponseEntity<>(updatedUser, OK);
 
@@ -147,6 +156,7 @@ public class UserResource extends ExceptionHandling {
 
 
     @GetMapping("/list")
+
     public ResponseEntity<List<User>> getAllUser(){
          List<User> users = userService.getUsers();
          return new ResponseEntity<>(users,OK);
@@ -161,11 +171,11 @@ public class UserResource extends ExceptionHandling {
 
     }
 
-    @DeleteMapping("/delete/{id}")
-   @PreAuthorize("hasAnyAuthority('user:delete')")
-       public ResponseEntity<HttpResponse> deleteUser(@PathVariable("id") Long id){
-        userService.deleteUser(id);
-        return response(NO_CONTENT,"User deleted successfully");
+    @DeleteMapping("/delete/{username}")
+    @PreAuthorize("hasAnyAuthority('user:delete')")
+       public ResponseEntity<HttpResponse> deleteUser(@PathVariable("username") String username){
+        userService.deleteUser(username);
+        return response(OK,"User deleted successfully");
     }
 
 
