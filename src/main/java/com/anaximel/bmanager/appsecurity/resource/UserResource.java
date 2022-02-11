@@ -75,13 +75,6 @@ public class UserResource extends ExceptionHandling {
                                            @RequestParam(value = "profileImage",required = false) MultipartFile profileImage) throws UsernameExistException,
                                                                                                                          EmailExistException, IOException {
 
-
-        System.out.printf("1" + firstName);
-        System.out.printf("2" + lastName);
-        System.out.printf("3" + username);
-        System.out.printf("4" + email);
-        System.out.printf("5" + role);
-        System.out.printf("6 " + isActive);
         User user  = userService.addNewUser(firstName, lastName, username, email, role, Boolean.parseBoolean(isActive), Boolean.parseBoolean(isNotLocked),
                 profileImage);
         System.out.printf("/add after user.service");
@@ -102,8 +95,7 @@ public class UserResource extends ExceptionHandling {
             EmailExistException, IOException {
         boolean isActive = Boolean.parseBoolean(TisActive);
         boolean isNotLocked = Boolean.parseBoolean(TisNotLocked);
-        System.out.printf("active " + isActive);
-        System.out.printf("locked " + isNotLocked);
+
         User updatedUser  = userService.updateUser(currentUser,firstName, lastName, username, email, role,isActive, isNotLocked,
                 profileImage);
         return new ResponseEntity<>(updatedUser, OK);
