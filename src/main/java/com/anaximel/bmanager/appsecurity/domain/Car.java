@@ -2,7 +2,11 @@ package com.anaximel.bmanager.appsecurity.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -17,7 +21,8 @@ public class Car implements Serializable {
     @Column(nullable = false,updatable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long id;
-    @Column(nullable = false,unique = true,updatable = false)
+
+    @Column(nullable = false ,unique = true,updatable = false)
     private String carRegNumber;
     private String carBrand;
     private String carModel;
@@ -40,6 +45,7 @@ public class Car implements Serializable {
     }
 
     public void setCarRegNumber(String carRegNumber) {
+
         this.carRegNumber = carRegNumber;
     }
 
@@ -98,6 +104,10 @@ public class Car implements Serializable {
     public void setCarIsActive(boolean carIsActive) {
         this.carIsActive = carIsActive;
     }
+
+
+
+
 
     public Car() {
     }

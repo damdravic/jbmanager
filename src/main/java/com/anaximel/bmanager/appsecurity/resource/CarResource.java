@@ -1,5 +1,6 @@
 package com.anaximel.bmanager.appsecurity.resource;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.anaximel.bmanager.appsecurity.domain.Car;
 import com.anaximel.bmanager.appsecurity.domain.CarBrand;
 import com.anaximel.bmanager.appsecurity.domain.CarModel;
@@ -46,9 +47,12 @@ public class CarResource {
                                          @RequestParam("carSold") String carSold,
                                          @RequestParam("carIsActive") String carIsActive
                                         ) throws RegistrationNumberException, IOException {
-             System.out.print(carFirstReg);
-        System.out.print(carColor);
-             LocalDate carFReg = LocalDate.parse(carFirstReg);
+         if (carRegNumber.isEmpty()){
+             carRegNumber = null;
+         }
+
+        System.out.println("xxx -->" + carRegNumber);
+        LocalDate carFReg = LocalDate.parse(carFirstReg);
         Car car = carService.addNewCar(carRegNumber,carBrand,carModel,carOwner,carFReg,carColor,Boolean.parseBoolean(carSold),Boolean.parseBoolean(carIsActive));
         return new ResponseEntity<>(car, HttpStatus.OK);
     }
@@ -91,14 +95,7 @@ public class CarResource {
     }
 
     @PostMapping("/newCarBrand")
-    public ResponseEntity<CarBrand> addNewBrand(@RequestParam("nb") String name, HttpServletRequest request)throws RegistrationNumberException,IOException{
-
-        Enumeration enumeration = request.getParameterNames();
-
-        while(enumeration.hasMoreElements()){
-            //String parameterName = enumeration.nextElement();
-            System.out.println(enumeration.nextElement().toString());
-        }
+    public ResponseEntity<CarBrand> addNewBrand(@RequestParam("nb") String name)throws RegistrationNumberException,IOException{
 
         CarBrand carBrand = this.carBrandService.addNewCarBrand(name);
         return new ResponseEntity<>(carBrand,HttpStatus.OK);
