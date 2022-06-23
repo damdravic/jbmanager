@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface WorkerQualificationServiceInterface {
 
+    WorkerQualification addNewWorkerQualification(String name,String description);
+
     WorkerQualification getQualificationById(int id);
 
     List<WorkerQualification> getAllQualifications();

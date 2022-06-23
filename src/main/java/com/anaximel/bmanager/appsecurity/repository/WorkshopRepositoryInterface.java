@@ -10,7 +10,7 @@ import java.util.List;
 public interface WorkshopRepositoryInterface extends JpaRepository<Workshop,Integer> {
 
 
-    Workshop findWorkshopById(int id);
+    Workshop findWorkshopByWsId(int id);
 
     @NonNull
     List<Workshop> findAll();

@@ -20,6 +20,11 @@ public class WorkerQualification implements Serializable {
         this.workerQualificationDescription = workerQualificationDescription;
     }
 
+    public WorkerQualification(String name, String description) {
+        this.workerQualificationName = name;
+        this.workerQualificationDescription=description;
+    }
+
     public int getWorkerQualificationId() {
         return workerQualificationId;
     }

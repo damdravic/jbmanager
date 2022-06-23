@@ -8,12 +8,13 @@ import java.util.List;
 
 public interface WorkerQualificationRepositoryInterface extends JpaRepository<WorkerQualification,Integer> {
 
-    WorkerQualification findWorkerQualificationById(int id);
 
-    WorkerQualification findWorkerQualificationByName(String name);
+    WorkerQualification findWorkerQualificationByWorkerQualificationId(int workerQualificationId);
+
+    WorkerQualification findWorkerQualificationByWorkerQualificationName(String workerQualificationName);
 
 
-    @NonNull
+    @Override
     List<WorkerQualification> findAll();
 
 

@@ -16,10 +16,17 @@ public class Workshop implements Serializable {
     private String wsImage;
     private Boolean wsIsActive;
     private String wsDescription;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "workerId")
     private List<Worker> wsWorkers;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "workerQualificationId")
     private List<WorkerQualification> workerQualifications;
 
-    public Workshop(int wsId, String wsName, String wsImage, Boolean wsIsActive, String wsDescription, List<Worker> wsWorkers, List<WorkerQualification> workerQualifications) {
+    public Workshop(int wsId, String wsName, String wsImage, Boolean wsIsActive, String wsDescription,
+                    List<Worker> wsWorkers, List<WorkerQualification> workerQualifications) {
         this.wsId = wsId;
         this.wsName = wsName;
         this.wsImage = wsImage;
@@ -30,6 +37,16 @@ public class Workshop implements Serializable {
     }
 
     public Workshop() {
+    }
+
+    public Workshop(String wsName, String wsImage, boolean wsIsActive, String wsDescription, List<Worker> wsWorkers,
+                    List<WorkerQualification> workerQualifications) {
+        this.wsName = wsName;
+        this.wsImage = wsImage;
+        this.wsIsActive = wsIsActive;
+        this.wsDescription = wsDescription;
+        this.wsWorkers = wsWorkers;
+        this.workerQualifications = workerQualifications;
     }
 
     public int getWsId() {
@@ -70,5 +87,21 @@ public class Workshop implements Serializable {
 
     public void setWsDescription(String wsDescription) {
         this.wsDescription = wsDescription;
+    }
+
+    public List<Worker> getWsWorkers() {
+        return wsWorkers;
+    }
+
+    public void setWsWorkers(List<Worker> wsWorkers) {
+        this.wsWorkers = wsWorkers;
+    }
+
+    public List<WorkerQualification> getWorkerQualifications() {
+        return workerQualifications;
+    }
+
+    public void setWorkerQualifications(List<WorkerQualification> workerQualifications) {
+        this.workerQualifications = workerQualifications;
     }
 }

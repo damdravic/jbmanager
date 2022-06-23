@@ -34,8 +34,6 @@ public class CarResource {
         this.carBrandService = carBrandService;
     }
 
-    //carRegNumber, carBrand, carBrand,
-    //        carOwner, carFirstReg, carColor, carSold, carIsActive
 
     @PostMapping("/add")
     public ResponseEntity<Car> addNewCar(@RequestParam("carRegNumber") String carRegNumber,
@@ -51,7 +49,6 @@ public class CarResource {
              carRegNumber = null;
          }
 
-        System.out.println("xxx -->" + carRegNumber);
         LocalDate carFReg = LocalDate.parse(carFirstReg);
         Car car = carService.addNewCar(carRegNumber,carBrand,carModel,carOwner,carFReg,carColor,Boolean.parseBoolean(carSold),Boolean.parseBoolean(carIsActive));
         return new ResponseEntity<>(car, HttpStatus.OK);
@@ -106,6 +103,12 @@ public class CarResource {
    public ResponseEntity<List<CarBrand>> getAllBrands(){
         List<CarBrand> carBrands = this.carBrandService.getAllCarBrands();
         return new ResponseEntity<>(carBrands,HttpStatus.OK);
+    }
+
+    @GetMapping("/searchCar/{licencePlate}")
+    public ResponseEntity<List<Car>> getCar(@PathVariable("licencePlate") String licencePlate){
+        List<Car> carList = this.carService.getCar(licencePlate);
+        return new ResponseEntity<>(carList,HttpStatus.OK);
     }
 
    @PostMapping("/newCarModel")

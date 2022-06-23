@@ -5,9 +5,13 @@ import com.anaximel.bmanager.appsecurity.repository.WorkerQualificationRepositor
 import com.anaximel.bmanager.appsecurity.service.WorkerQualificationServiceInterface;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
+@Transactional
 public class WorkerQualificationServiceImpl implements WorkerQualificationServiceInterface {
 
 
@@ -19,11 +23,17 @@ public class WorkerQualificationServiceImpl implements WorkerQualificationServic
     }
 
 
+    @Override
+    public WorkerQualification addNewWorkerQualification(String name, String description) {
 
+         WorkerQualification wq = new WorkerQualification(name,description);
+         this.workerQualificationRepositoryInterface.save(wq);
+         return wq;
+    }
 
     @Override
     public WorkerQualification getQualificationById(int id) {
-        return this.workerQualificationRepositoryInterface.findWorkerQualificationById(id);
+        return this.workerQualificationRepositoryInterface.findWorkerQualificationByWorkerQualificationId(id);
     }
 
     @Override

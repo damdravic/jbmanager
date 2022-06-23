@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface WorkerServiceInterface {
 
+    Worker addNewWorker(Worker worker);
+
+    Worker updateWorker(int id, Worker Worker);
 
     Worker getWorkerById(int id);
 

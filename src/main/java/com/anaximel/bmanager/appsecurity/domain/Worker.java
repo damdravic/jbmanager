@@ -7,34 +7,23 @@ import java.util.Date;
 @Entity
 public class Worker extends User implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable =false,updatable = false)
-    private int wUserId;
-
-
     private User wUser;
+
     private String qualification;
 
-    public Worker(int wUserId, User wUser, String qualification) {
-        this.wUserId = wUserId;
+    public Worker(User wUser, String qualification) {
+
         this.wUser = wUser;
         this.qualification = qualification;
     }
 
-    public int getwUserId() {
-        return wUserId;
-    }
 
-    public void setwUserId(int wUserId) {
-        this.wUserId = wUserId;
-    }
 
-    public User getwUser() {
+    public User getWUser() {
         return wUser;
     }
 
-    public void setwUser(User wUser) {
+    public void setWUser(User wUser) {
         this.wUser = wUser;
     }
 

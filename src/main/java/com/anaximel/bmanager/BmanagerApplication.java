@@ -18,14 +18,4 @@ public class BmanagerApplication {
 
 
 
-
-
-
-
-
-
-
-
-
-
 }

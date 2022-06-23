@@ -69,6 +69,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public List<Car> getCar(String licencePlate) {
+       return  this.carRepository.findCarByCarRegNumberContaining(licencePlate);
+    }
+
+    @Override
     public void deleteCar(String carRegNumber) {
         Car car= carRepository.findCarByCarRegNumber(carRegNumber);
         carRepository.deleteById(car.getId());

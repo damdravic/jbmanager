@@ -4,9 +4,13 @@ import com.anaximel.bmanager.appsecurity.domain.Worker;
 import com.anaximel.bmanager.appsecurity.repository.WorkerRepositoryInterface;
 import com.anaximel.bmanager.appsecurity.service.WorkerServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
+@Transactional
 public class WorkerServiceImpl implements WorkerServiceInterface {
 
     private WorkerRepositoryInterface workerRepositoryInterface;
@@ -16,6 +20,18 @@ public class WorkerServiceImpl implements WorkerServiceInterface {
         this.workerRepositoryInterface = workerRepositoryInterface;
     }
 
+    public WorkerServiceImpl() {
+    }
+
+    @Override
+    public Worker addNewWorker(Worker worker) {
+        return null;
+    }
+
+    @Override
+    public Worker updateWorker(int id, Worker Worker) {
+        return null;
+    }
 
     @Override
     public Worker getWorkerById(int id) {
@@ -23,9 +39,9 @@ public class WorkerServiceImpl implements WorkerServiceInterface {
     }
 
     @Override
-    public Worker getWorkerByName(String name) {
+    public Worker getWorkerByName(String username) {
 
-        return this.workerRepositoryInterface.findWorkerByName(name);
+        return this.workerRepositoryInterface.findWorkerByUsername(username);
     }
 
     @Override

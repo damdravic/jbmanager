@@ -23,6 +23,7 @@ public class WorkOrder implements Serializable {
     private Workshop workshop;
     private String description;
     private String parts;
+    private String insurer;
     private Date createdDate;
     private Date dataIn;
     private Date dataOut;
@@ -137,6 +138,24 @@ public class WorkOrder implements Serializable {
     public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
+
+    public WorkOrder(Car car, Workshop workshop, String description, String parts,String insurer, Date dataIn, Date dataOut, Date scheduledDataIn, Date scheduledDataOut, User createdBy) {
+        this.car = car;
+        this.workshop = workshop;
+        this.description = description;
+        this.parts = parts;
+        this.insurer = insurer;
+        this.dataIn = dataIn;
+        this.dataOut = dataOut;
+        this.scheduledDataIn = scheduledDataIn;
+        this.scheduledDataOut = scheduledDataOut;
+
+        this.createdBy = createdBy;
+    }
+
+
+
+
 
     public WorkOrder(Long id, Long workOrderNr, Car car, Workshop workshop,
                      String description, String parts, Date createdDate,

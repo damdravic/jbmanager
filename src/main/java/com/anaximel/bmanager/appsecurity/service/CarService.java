@@ -26,6 +26,9 @@ public interface CarService {
                   LocalDate newCarFirstReg, String newCarColor,
                   boolean newCarSold, boolean newCarIsActive);
 
+    List<Car> getCar(String licencePlate);
+
+
     void deleteCar(String carRegNumber);
 
 }
