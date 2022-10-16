@@ -1,5 +1,6 @@
 package com.anaximel.bmanager.appsecurity.impl;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.anaximel.bmanager.appsecurity.domain.User;
 import com.anaximel.bmanager.appsecurity.enumeration.Role;
 import com.anaximel.bmanager.appsecurity.exception.domain.EmailExistException;
@@ -122,11 +123,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setRole(Role.ROLE_USER.name());
         user.setAuthorities(Role.ROLE_USER.getAuthorities());
         user.setProfileImageUrl(getTemporaryProfileUrl(username));
-
+        System.out.println("  pass  " + password + "  pass  ");
         userRepository.save(user);
-        emailService.sendNewPasswordEmail(firstName,password,email);
+       // emailService.sendNewPasswordEmail(firstName,password,email);
         LOGGER.info("User password " + password);
-
+        System.out.println("  pass  " + password + "  pass  ");
         return user;
     }
 

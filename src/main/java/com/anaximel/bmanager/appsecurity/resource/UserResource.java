@@ -59,7 +59,7 @@ public class UserResource extends ExceptionHandling {
     public ResponseEntity<User> registerUser(@RequestBody User user) throws UsernameExistException,
                                                                             EmailExistException,
                                                                              MessagingException {
-        System.out.println(user.getFirstName() + user.getLastName()+ user.getUsername() + user.getEmail());
+
         User newUser = userService.register(user.getFirstName(), user.getLastName(),user.getUsername(),user.getEmail());
         return new ResponseEntity<>(newUser, OK);
     }
