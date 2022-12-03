@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping(path={"/tireWarehouse"})
@@ -22,11 +23,22 @@ public class TireResource {
     @PostMapping("/add")
     public ResponseEntity<Shelf> addNewShelf(@RequestParam("shelfName") String shelfName,
                                             @RequestParam("location") String location,
-                                            @RequestParam("noc") int noc,
-                                            @RequestParam("nor") int nor) throws IOException {
+                                            @RequestParam("noc") String noc,
+                                            @RequestParam("nor") String nor)  {
 
-        Shelf shelf = this.shelfService.addNewShelf(shelfName,location,nor,noc);
+        int intNoc = Integer.parseInt(noc);
+
+        Shelf shelf = this.shelfService.addNewShelf(shelfName,location,Integer.parseInt(nor),Integer.parseInt(noc));
         return new ResponseEntity<>(shelf, HttpStatus.OK);
+    }
+
+    @GetMapping("/getList")
+    public ResponseEntity<List<Shelf>> getAll(){
+
+        List<Shelf> shelves =this.shelfService.getAllShelves();
+
+
+        return new ResponseEntity<>(shelves, HttpStatus.OK);
     }
 
 

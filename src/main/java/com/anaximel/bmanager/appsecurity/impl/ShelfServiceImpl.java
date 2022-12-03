@@ -25,9 +25,9 @@ public class ShelfServiceImpl implements ShelfService {
     @Override
     public Shelf getShelf(String shelfName) {
 
-         Shelf shelf = this.shelfRepository.findShelfByShelfName(shelfName);
+        return this.shelfRepository.findShelfByShelfName(shelfName);
 
-        return shelf;
+
     }
 
     @Override
@@ -41,8 +41,8 @@ public class ShelfServiceImpl implements ShelfService {
          Shelf newShelf = new Shelf();
            newShelf.setShelfName(name);
            newShelf.setLocation(location);
-           newShelf.setNoOfRows(nor);
-           newShelf.setNoOfCols(noc);
+           newShelf.setNor(nor);
+           newShelf.setNoc(noc);
 
         this.shelfRepository.save(newShelf);
 
@@ -55,8 +55,8 @@ public class ShelfServiceImpl implements ShelfService {
         Shelf newShelf = new Shelf();
         newShelf.setShelfName(name);
         newShelf.setLocation(location);
-        newShelf.setNoOfRows(nor);
-        newShelf.setNoOfCols(noc);
+        newShelf.setNor(nor);
+        newShelf.setNoc(noc);
 
         this.shelfRepository.save(newShelf);
 

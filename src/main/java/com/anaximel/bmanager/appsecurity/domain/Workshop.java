@@ -5,7 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Workshop implements Serializable {
+public class
+Workshop implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

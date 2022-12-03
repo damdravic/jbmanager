@@ -16,9 +16,17 @@ public class Shelf implements Serializable {
 
     private String location;
 
-    private int noOfRows;
+    @Column(name="no_of_rows")
+    private int nor;
 
-    private int noOfCols;
+
+    @Column(name="no_of_cols")
+    private int noc;
+
+
+
+
+
 
 
     public int getShelfId() {
@@ -45,20 +53,20 @@ public class Shelf implements Serializable {
         this.location = location;
     }
 
-    public int getNoOfRows() {
-        return noOfRows;
+    public int getNor() {
+        return nor;
     }
 
-    public void setNoOfRows(int noOfRows) {
-        this.noOfRows = noOfRows;
+    public void setNor(int nor) {
+        this.nor = nor;
     }
 
-    public int getNoOfCols() {
-        return noOfCols;
+    public int getNoc() {
+        return noc;
     }
 
-    public void setNoOfCols(int noOfCols) {
-        this.noOfCols = noOfCols;
+    public void setNoc(int noc) {
+        this.noc = noc;
     }
 
     @Override
@@ -67,8 +75,8 @@ public class Shelf implements Serializable {
                 "shelfId=" + shelfId +
                 ", shelfName='" + shelfName + '\'' +
                 ", location='" + location + '\'' +
-                ", noOfRows=" + noOfRows +
-                ", noOfCols=" + noOfCols +
+                ", noOfRows=" + nor +
+                ", noOfCols=" + noc +
                 '}';
     }
 }
