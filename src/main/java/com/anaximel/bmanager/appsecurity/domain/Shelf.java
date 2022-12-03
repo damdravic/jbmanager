@@ -2,6 +2,7 @@ package com.anaximel.bmanager.appsecurity.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="shelf")
@@ -20,6 +21,7 @@ public class Shelf implements Serializable {
 
     private int noOfCols;
 
+    private List<ShelfCell> shelfCells;
 
     public int getShelfId() {
         return shelfId;
